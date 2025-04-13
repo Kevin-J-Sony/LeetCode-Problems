@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\title{LeetCode Problems}
+\author{Kevin Sony}
+\date{2025}
+
+\begin{document}
+
+\maketitle
+
+This is a collection of my notes on particularly difficult problems, and how I arrived at the solution.
+
+\section*{Median of Two Sorted Arrays}
+
+Given two sorted arrays $x$ and $y$ of size $m$ and $n$ respectively, return the median of the two sorted arrays.
+
+\subsection*{Solution}
+
+The sorted arrays are given by $x = [x_0, x_1, \cdots, x_{m - 1}]$ and $y = [y_0, y_1, \cdots, y_{n - 1}]$.
+
+We can restate the problem: given two arrays $x$ and $y$ of size $m$ and $n$ respectively, find $\tilde{x}$ and $\tilde{y}$ such that when $x$ is partitioned by $\tilde{x}$ into two components $x = [x^1\text{  }x^2]$ and $y$ is partitioned by $\tilde{y}$ into two components $y = [y^1\text{  }y^2]$ and where $[x^1\text{  }y^2]$ is a sorted array and $[y^1\text{  }x^2]$ is also a sorted array. $x^1$, $y^1$, $x^2$, and $y^2$ can potentially be empty.
+
+Since $x$ and $y$ are sorted arrays, the medians of the respective arrays are found in the middle. Let $i_1 = \frac{m - 1}{2}$ be the index of the median for $x$ (or the lower median if $x$ is even), and let $j_1 = \frac{n - 1}{2}$ be the index of the median for $y$ (or the lower median likewise).
+
+Now using binary search, find the index of the largest element of $x$ that is partitioned by $y_{j_1}$ and label it $i_2$, i.e. $x_{i_2} \leq y_{j_1}$ and $x_{i_2} \geq x_k \quad \forall x_k \leq y_{j_1}$.
+
+Likewise, find the index of the largest element of $y$ that is partitioned by $x_{i_1}$ and label it $j_2$, i.e. $y_{j_2} \leq x_{i_1}$ and $y_{j_2} \geq y_k \quad \forall y_k \leq x_{i_1}$.
+
+
+\end{document}
+
