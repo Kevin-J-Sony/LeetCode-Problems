@@ -5,6 +5,9 @@
 \author{Kevin Sony}
 \date{2025}
 
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+
 \begin{document}
 
 \maketitle
@@ -19,14 +22,20 @@ Given two sorted arrays $x$ and $y$ of size $m$ and $n$ respectively, return the
 
 The sorted arrays are given by $x = [x_0, x_1, \cdots, x_{m - 1}]$ and $y = [y_0, y_1, \cdots, y_{n - 1}]$.
 
-We can restate the problem: given two arrays $x$ and $y$ of size $m$ and $n$ respectively, find $\tilde{x}$ and $\tilde{y}$ such that when $x$ is partitioned by $\tilde{x}$ into two components $x = [x^1\text{  }x^2]$ and $y$ is partitioned by $\tilde{y}$ into two components $y = [y^1\text{  }y^2]$ and where $[x^1\text{  }y^2]$ is a sorted array and $[y^1\text{  }x^2]$ is also a sorted array. $x^1$, $y^1$, $x^2$, and $y^2$ can potentially be empty.
+We can restate the problem: given two arrays $x$ and $y$ of size $m$ and $n$ respectively, find a partition of $x$, $x = [x^1\text{  }x^2]$, and a partition of $y$, $y = [y^1\text{  }y^2]$, such that  $[x^1\text{  }y^2]$ is a sorted array and $[y^1\text{  }x^2]$ is also a sorted array. $x^1$, $y^1$, $x^2$, and $y^2$ can potentially be empty.
 
-Since $x$ and $y$ are sorted arrays, the medians of the respective arrays are found in the middle. Let $i_1 = \frac{m - 1}{2}$ be the index of the median for $x$ (or the lower median if $x$ is even), and let $j_1 = \frac{n - 1}{2}$ be the index of the median for $y$ (or the lower median likewise).
 
-Now using binary search, find the index of the largest element of $x$ that is partitioned by $y_{j_1}$ and label it $i_2$, i.e. $x_{i_2} \leq y_{j_1}$ and $x_{i_2} \geq x_k \quad \forall x_k \leq y_{j_1}$.
+Since $x$ and $y$ are sorted arrays, the medians of the respective arrays are found in the middle. Let $i_1 = \floor{\frac{m - 1}{2}}$ be the index of the median for $x$ (or the lower median if $x$ is even), and let $j_1 = \floor{\frac{n - 1}{2}}$ be the index of the median for $y$ (or the lower median likewise).
 
-Likewise, find the index of the largest element of $y$ that is partitioned by $x_{i_1}$ and label it $j_2$, i.e. $y_{j_2} \leq x_{i_1}$ and $y_{j_2} \geq y_k \quad \forall y_k \leq x_{i_1}$.
+Without loss of generality, let $x_{i_1} \leq y_{j_1}$. Relabel if necessary.
 
+Using binary search, we find the index where $y_{j_1}$ partitions $x$ into two halves. Find the index of the smallest element of the "larger half" of $x$ (in that the elements in it are greater than the elements in the lower half) partitioned by $y_{j_1}$ and label it $i_2$, i.e. $x_{i_2} \geq y_{j_1}$ and $x_{i_2} \leq x_k \quad \forall x_k \geq y_{j_1}$.
+
+Likewise, find the index of the largest element of the "smaller half" of $y$ partitioned by $x_{i_1}$ and label it $j_2$, i.e. $y_{j_2} \leq x_{i_1}$ and $y_{j_2} \geq y_k \quad \forall y_k \leq x_{i_1}$.
+
+We note several things. Since $x_{i_1} \leq y_{j_1}$, $y_{j_2} \leq x_{i_1} \leq y_{j_1}$. Thus, $y_{j_2} \leq y_{j_1}$. Furthermore, $x_{i_2} \geq x_{j_1}$, and so $y_{j_2} \leq y_{j_1} \leq x_{i_2}$. Thus $y_{j_2} \leq x_{i_2}$
+
+This conclusion is critical
 
 \end{document}
 

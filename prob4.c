@@ -10,6 +10,8 @@ double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Si
 
     // search until the index of med1 is found
 }
+
+
 int main() {
     // read the corresponding input from a file
     FILE* file = fopen("prob1.in", "r");
