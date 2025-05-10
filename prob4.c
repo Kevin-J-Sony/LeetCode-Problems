@@ -1,14 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {
     // given the overll run time complexity should be O(log n + log m), it should employ some sort of
-    // halving operation, likely binary search
+    // halving operation, likely binary search as the arrays are sorted
 
-    int med2_idx = nums2Size / 2;
-    int med2 = nums1[med2_idx];
+    int idx1;
+    int idx2;
+    int nums1_bot = 0;
+    int nums1_top = nums1Size - 1;
 
-    // search until the index of med1 is found
+    int nums2_bot = 0;
+    int nums2_top = nums2Size - 1;
+    
+    int flag = (0 == 1);
+
+    do {
+        idx1 = (nums1_bot + nums1_top + 1) / 2;
+        idx2 = (nums1Size + nums2Size) / 2 - idx1;
+
+
+        if (idx1 == 0) {
+
+        } else {}
+
+    } while(flag == (0 == 1));
 }
 
 
