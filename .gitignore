@@ -2,3 +2,5 @@ Notes_on_code.aux
 Notes_on_code.log
 Notes_on_code.synctex.gz
 Notes_on_code.out
+.vscode/
+*.class
