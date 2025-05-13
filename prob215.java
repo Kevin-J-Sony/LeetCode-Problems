@@ -1,9 +1,9 @@
 import java.util.Arrays;
-import java.util.Random;
+//import java.util.Random;
 
 public class prob215 {
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        Solution215 sol = new Solution215();
         /*
         int[] heap = new int[10];
         Random rand = new Random();
@@ -23,7 +23,7 @@ public class prob215 {
     }
 }
 
-class Solution {
+class Solution215 {
 
     private void heapify(int[] nums) {
         int n = nums.length;
