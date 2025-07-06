@@ -1,14 +1,14 @@
 public class prob605 {
     public static void main(String[] args) {
         int[] array = {1,0,0,0,0,0,1};
-        Solution sol = new Solution();
+        Solution605 sol = new Solution605();
 
         System.out.println(sol.canPlaceFlowers(array, 2));
     }
 }
 
 
-class Solution {
+class Solution605 {
     public int canPlaceFlowers(int[] flowerbed, int n) {
         int len = flowerbed.length;
         if (n > len / 2 + 1) {

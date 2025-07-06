@@ -20,22 +20,20 @@ Given two sorted arrays $x$ and $y$ of size $m$ and $n$ respectively, return the
 
 \subsection*{Solution}
 
-The sorted arrays are given by $x = [x_0, x_1, \cdots, x_{m - 1}]$ and $y = [y_0, y_1, \cdots, y_{n - 1}]$.
+The best way to solve this problem is to use the merge algorithm, but halt the process once the median is reached. Keep track of two variables $i_1$ and $i_2$, which index $x$ and $y$ respectively. When
+\begin{gather*}
+i_1 + i_2 = \dfrac{m + n}{2}
+\end{gather*}
+we have the median. When implementing, in the case \( m + n \) is odd, the median is simply whatever value that should be located at the combined index, which is when
+\begin{gather*}
+i_1 + i_2 = \floor{ \dfrac{m + n}{2} }
+\end{gather*}
+In the case \( m + n \) is even, the median is the average of the lower and higher median, which is the two values located at
+\begin{gather*}
+i_1 + i_2 = \floor{ \dfrac{m + n}{2} } - 1\\
+i_1 + i_2 = \floor{ \dfrac{m + n}{2} } 
+\end{gather*}
 
-We can restate the problem: given two arrays $x$ and $y$ of size $m$ and $n$ respectively, find a partition of $x$, $x = [x^1\text{  }x^2]$, and a partition of $y$, $y = [y^1\text{  }y^2]$, such that  $[x^1\text{  }y^2]$ is a sorted array and $[y^1\text{  }x^2]$ is also a sorted array. $x^1$, $y^1$, $x^2$, and $y^2$ can potentially be empty.
-
-
-Since $x$ and $y$ are sorted arrays, the medians of the respective arrays are found in the middle. Let $i_1 = \floor{\frac{m - 1}{2}}$ be the index of the median for $x$ (or the lower median if $x$ is even), and let $j_1 = \floor{\frac{n - 1}{2}}$ be the index of the median for $y$ (or the lower median likewise).
-
-Without loss of generality, let $x_{i_1} \leq y_{j_1}$. Relabel if necessary.
-
-Using binary search, we find the index where $y_{j_1}$ partitions $x$ into two halves. Find the index of the smallest element of the "larger half" of $x$ (in that the elements in it are greater than the elements in the lower half) partitioned by $y_{j_1}$ and label it $i_2$, i.e. $x_{i_2} \geq y_{j_1}$ and $x_{i_2} \leq x_k \quad \forall x_k \geq y_{j_1}$.
-
-Likewise, find the index of the largest element of the "smaller half" of $y$ partitioned by $x_{i_1}$ and label it $j_2$, i.e. $y_{j_2} \leq x_{i_1}$ and $y_{j_2} \geq y_k \quad \forall y_k \leq x_{i_1}$.
-
-We note several things. Since $x_{i_1} \leq y_{j_1}$, $y_{j_2} \leq x_{i_1} \leq y_{j_1}$. Thus, $y_{j_2} \leq y_{j_1}$. Furthermore, $x_{i_2} \geq x_{j_1}$, and so $y_{j_2} \leq y_{j_1} \leq x_{i_2}$. Thus $y_{j_2} \leq x_{i_2}$
-
-This conclusion is critical
 
 \end{document}
 
